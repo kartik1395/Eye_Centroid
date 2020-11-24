@@ -1,9 +1,6 @@
 import cv2
 import numpy as np
-
-cap = cv2.VideoCapture("D:\\TeleMed\\daniel-ir\\daniel-ir.mkv")
-
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+import argparse
 
 
 '''def contours_method(gray, frame):
@@ -73,51 +70,62 @@ def haarcascade_method(gray, frame):
 
 	return frame
 
-frame_no=1
-while True:
-	 ret, frame=cap.read()
 
-	 if not ret:
-	 	break
+if __name__ == "__main__":
+	
+	parser = argparse.ArgumentParser()
+	parser.add_argument("--video", help='Enter full path of video file', required=True)
+	args = parser.parse_args()
 
+	video_location = args.video
+	cap = cv2.VideoCapture(video_location)
+	eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+	
+	frame_no=1
+	while True:
+		 ret, frame=cap.read()
 
-	 gray=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-	 frame=haarcascade_method(gray, frame)
-
-
-	 if not ret:
-	 	print("Frame not recieved")
-	 	break
-
-
-
-	 cv2.putText(frame, "Frame count : " + str(frame_no), (20, 40),
-	             cv2.FONT_HERSHEY_SIMPLEX, 1, (100, 100, 255), 2, cv2.LINE_AA)
-
-	 key = cv2.waitKey(1) & 0xff
+		 if not ret:
+		 	break
 
 
-	 if key == ord('p'):
-	 	while True:
-	 		key2 = cv2.waitKey(1) or 0xff
-	 		
-	 		if key2 == ord('p'):
-	 			break
+		 gray=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-	 # if key == 27: 
-	 # 	break
+		 frame=haarcascade_method(gray, frame)
+
+
+		 if not ret:
+		 	print("Frame not recieved")
+		 	break
 
 
 
-	 cv2.imshow('detected circles1', frame)
+		 cv2.putText(frame, "Frame count : " + str(frame_no), (20, 40),
+		             cv2.FONT_HERSHEY_SIMPLEX, 1, (100, 100, 255), 2, cv2.LINE_AA)
+
+		 key = cv2.waitKey(1) & 0xff
+
+
+		 if key == ord('p'):
+		 	while True:
+		 		key2 = cv2.waitKey(1) or 0xff
+		 		
+		 		if key2 == ord('p'):
+		 			break
+
+		 # if key == 27: 
+		 # 	break
+
+
+
+		 cv2.imshow('detected circles1', frame)
 
 
 
 
-	 if cv2.waitKey(1) & 0xFF == ord('q'):
-	 	break
-	 frame_no += 1
+		 if cv2.waitKey(1) & 0xFF == ord('q'):
+		 	break
+		 frame_no += 1
 
-cap.release()
-cv2.destroyAllWindows()
+	cap.release()
+	cv2.destroyAllWindows()
