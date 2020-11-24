@@ -8,4 +8,13 @@
 pip install opencv-python
 pip install numpy
 ```
-4. Clone this repo using ```git clone 
+4. Clone this repo using ```git clone https://github.com/kartik1395/Eye_Centroid.git```
+
+## Running the code
+1. Open cmd and go to the location of the repo.
+2. Run the code using ``` python eye_centroid.py --video \path\to\video```
+3. The video should be displayed with the Eye Tracking in place.
+4. Press "p" to pause/play the video.
+5. Press "q" to exit the video.
+
+
