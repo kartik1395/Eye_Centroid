@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import argparse
 
-
+# Additional Methods that were tried
 '''def contours_method(gray, frame):
 	 # _, threshold = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
 
